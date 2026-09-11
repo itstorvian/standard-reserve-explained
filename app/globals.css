@@ -333,6 +333,10 @@ a {
   color: #c0c6b8;
   font-weight: 400;
 }
+.site-footer .footer-credit-link {
+  color: inherit;
+  text-decoration: none;
+}
 .story-topline {
   display: flex;
   align-items: center;

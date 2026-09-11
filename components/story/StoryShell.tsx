@@ -247,7 +247,17 @@ export function StoryShell() {
           Not affiliated with or endorsed by Standard Reserve.
         </p>
         <p>
-          Built by <strong>Torvian.</strong>
+          Built by{' '}
+          <strong>
+            <a
+              className="footer-credit-link"
+              href="https://x.com/itstorvian"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @itstorvian
+            </a>
+          </strong>
         </p>
       </footer>
       <SourceDrawer selection={source} mode={mode} onClose={closeSource} />
