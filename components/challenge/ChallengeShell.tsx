@@ -212,7 +212,7 @@ export function ChallengeShell() {
                   type="text"
                   value={xHandle}
                   maxLength={xHandleInputMaxLength}
-                  placeholder="@torvian"
+                  placeholder="@yourhandle"
                   onChange={(event) => handleXHandleChange(event.target.value)}
                   onBlur={(event) => handleXHandleChange(event.target.value)}
                   autoComplete="off"
