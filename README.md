@@ -6,6 +6,8 @@ An unofficial educational project.
 
 An unofficial, seven-scene educational story by Torvian. Follow fictional participant Alex from a Charter to Branch expansion and withdrawal. Simple Mode is the default; Protocol Mode changes terminology without resetting the current scene or its action state.
 
+The `Challenge` route adds a frontend-only ten-question run. It uses the same verified protocol content, asks eight scenario questions and two concept checks, and keeps the scoring model deliberately simple: accuracy first, with completion time shown separately.
+
 ## Run locally
 
 Requires Node.js 22.13 or later and npm.
@@ -52,6 +54,16 @@ The starter's component catalog is retained; only imported components enter the 
 The factual baseline is the official [Whitepaper V0.1](https://www.standardreserve.xyz/whitepaper/), with the [official overview](https://www.standardreserve.xyz/app/about/) and [mint status](https://www.standardreserve.xyz/app/mint/) as supporting sources. Reviewed September 9, 2026. No secondary crypto blogs underpin the content.
 
 The official mint was not live at review. Redacted launch settings are deliberately not supplied. Token symbols carry no quantity or timing meaning, and no market performance is predicted. Recheck official sources before updating factual copy or a later public release.
+
+## Challenge rules
+
+- Each run has 10 questions with three answer choices and one correct answer.
+- `Pass` moves the current question to the end of the run once. A passed question returns after the unanswered sequence and cannot be passed again.
+- Answer feedback explains the mechanism, names Alex's contextual reaction, and links to the supporting official source.
+- Results show correct answers and completion time. Review answers, replay with a new question and answer order, or return to Learn.
+- An optional X handle is trimmed, normalized with a leading `@`, limited to 15 username characters, and stored only when it contains letters, numbers, or underscores. Unsupported characters show an inline error instead of being silently removed. It is an unverified display value on the result card.
+- `Share on X` uses a normal intent URL with the score and the current public `/challenge` URL. No X API or login is involved.
+- The challenge is frontend-only. There is no account, leaderboard, server persistence, wallet, or backend.
 
 ## Public-launch metadata
 

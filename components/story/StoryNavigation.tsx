@@ -1,5 +1,6 @@
 'use client';
 import { ArrowLeft, ArrowRight, Expand } from 'lucide-react';
+import Link from 'next/link';
 import { chapters } from '@/data/protocol';
 import type { Mode } from '@/types/protocol';
 
@@ -65,14 +66,22 @@ export function StoryNavigation({
           <ArrowRight size={16} aria-hidden="true" />
         </button>
       ) : (
-        <button className="primary-button" onClick={onMap}>
-          {complete ? 'See the whole system' : 'Finish the story'}
-          {complete ? (
-            <Expand size={15} aria-hidden="true" />
-          ) : (
-            <ArrowRight size={15} aria-hidden="true" />
+        <div className="final-actions">
+          <button className="primary-button" onClick={onMap}>
+            {complete ? 'See the whole system' : 'Finish the story'}
+            {complete ? (
+              <Expand size={15} aria-hidden="true" />
+            ) : (
+              <ArrowRight size={15} aria-hidden="true" />
+            )}
+          </button>
+          {complete && (
+            <Link className="challenge-cta" href="/challenge">
+              Test your understanding
+              <ArrowRight size={15} aria-hidden="true" />
+            </Link>
           )}
-        </button>
+        </div>
       )}
     </nav>
   );

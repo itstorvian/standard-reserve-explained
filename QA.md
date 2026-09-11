@@ -17,6 +17,15 @@ Reviewed September 9, 2026. The approved visual direction was retained. The prod
 - Repeated the seven-scene walkthrough, both modes, all 16 contextual drawers, action replays, fee choices, previous navigation, final map, and all 56 responsive states against the native Next.js production server. No responsive failures were detected.
 - No browser console errors or warnings were present in the final production QA session.
 
+## Challenge verification
+
+- The Challenge route is static and returns HTTP 200. The start screen exposes the 10-question run, timer, pass rule, and official-source promise.
+- The question set contains eight scenario questions and two conceptual checks. Every question is centralized in `data/challenge.ts` and includes a source URL and supporting explanation.
+- Pass moves a question to the end once and stores the pass count on that run item, so it cannot loop forever. Answering records accuracy, selected answer, and whether the question was previously passed.
+- The result view shows score and elapsed time, supports compact answer review, and offers replay with a newly shuffled question and answer order.
+- X handles are optional, normalized with a leading `@`, limited to 15 username characters, and saved only when valid. Unsupported characters show an inline validation message and are not silently removed. Blank handles remain allowed; the result card excludes blank or invalid values. Share on X uses a URL-encoded `x.com/intent/post` URL with the current challenge origin and never includes the handle.
+- Browser interaction QA for the new route was requested by the brief, but the in-app browser was blocked by the environment's automatic usage-limit review. Static HTTP, build, lint, typecheck, and source-state checks passed instead; no workaround or deployment was attempted.
+
 ## Accessibility
 
 - Keyboard arrow navigation moves between scenes when the story is focused. Arrow keys in the mode group change its selection without navigating the story.
@@ -56,6 +65,7 @@ Every distinct destination below was opened directly in the browser. All resolve
 - Replaced the Sites-specific Vinext/Workers runtime with native Next.js for the requested GitHub/Vercel launch. Added the Next.js Vercel preset and Tailwind PostCSS configuration; removed the superseded Vite configuration and runtime dependencies. The story components and approved design remain intact.
 - Added static social-preview artwork and public metadata. Vercel's production-domain system variable supplies the canonical and social image origin; preview deployments are marked `noindex`. Local runs have no fabricated production canonical.
 - Wrapped the mobile chapter navigation to remove its horizontal scroll requirement.
+- Added the frontend-only Challenge route, centralized question data, source-backed feedback, one-use pass handling, accuracy-first results, review answers, replay randomization, and Learn/Challenge navigation. No persistence or backend was introduced.
 
 ## Release commands and metadata checks
 
@@ -76,14 +86,16 @@ The repository has no commits or remote yet. A scan of publishable source found 
 
 The app has no embedded secrets, wallet connection, blockchain RPC, database, analytics, or custom backend. Framework development tools are limited to development mode. Metadata identifies the unofficial educational project; the disclaimer and Torvian credit remain visible.
 
-The official protocol is prelaunch at review, so the website explains published design rather than demonstrated live-market behavior. Redacted parameters remain omitted. Browser QA used the available Chromium-based in-app browser; Safari, Firefox, physical devices, and a dedicated screen reader were not separately tested. Reduced-motion rules were inspected, but an operating-system reduced-motion preference was not separately emulated. The deployed domain, production canonical, and social-platform cache behavior must be checked after the user's first Vercel deployment.
+The official protocol is prelaunch at review, so the website explains published design rather than demonstrated live-market behavior. Redacted parameters remain omitted. Browser QA used the available Chromium-based in-app browser for the existing Learn experience; Safari, Firefox, physical devices, and a dedicated screen reader were not separately tested. The new Challenge route could not be walked interactively because the browser automation layer hit its usage-limit review; its static route, source state, and production build were verified. Reduced-motion rules were inspected, but an operating-system reduced-motion preference was not separately emulated. The deployed domain, production canonical, and social-platform cache behavior must be checked after the user's first Vercel deployment.
 
 ## Files modified or created during completion
 
 - `.gitignore`, `.oxlintrc.json`
 - `app/page.tsx`, `app/globals.css`, `app/layout.tsx`, `app/opengraph-image.tsx`
 - `components/story/ModeToggle.tsx`, `components/story/StoryShell.tsx`, `components/story/Visuals.tsx`, `components/story/StoryNavigation.tsx`, `components/story/SourceDrawer.tsx`
+- `components/challenge/ChallengeShell.tsx`, `components/challenge/QuestionCard.tsx`, `components/challenge/ChallengeResult.tsx`
 - `data/protocol.ts`, `types/protocol.ts`, `CONTENT_MAP.md`
+- `data/challenge.ts`, `types/challenge.ts`, `app/challenge/page.tsx`
 - `package.json`, `package-lock.json`, `next.config.ts`, `postcss.config.mjs`, `tsconfig.json`, `vercel.json`
 - `public/favicon.svg`, `README.md`, `QA.md`
 - Removed `vite.config.ts`; the local `.openai` configuration is ignored and unused by the public build.

@@ -1,5 +1,6 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, BookOpen, RotateCcw } from 'lucide-react';
 import {
   Dialog,
@@ -123,6 +124,12 @@ export function StoryShell() {
           </span>
         </button>
         <div className="header-right">
+          <nav className="site-nav" aria-label="Primary">
+            <Link href="/" aria-current="page">
+              Learn
+            </Link>
+            <Link href="/challenge">Challenge</Link>
+          </nav>
           <button className="text-button" onClick={() => openSource('all')}>
             <BookOpen size={15} strokeWidth={1.4} aria-hidden="true" />
             Sources
